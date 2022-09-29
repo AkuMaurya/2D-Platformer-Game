@@ -49,10 +49,10 @@ public class PlayerController : MonoBehaviour
     private void JumpAnimation(float jump){
         if(jump >0 && isGrounded){
             Debug.Log("Jump"+jump);
-            // animator.SetBool("Jump", true);
+            animator.SetBool("Jump", true);
             
             body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
-            isGrounded = false;
+            // isGrounded = false;
         }
         else{
             // Debug.Log("NotJump");
