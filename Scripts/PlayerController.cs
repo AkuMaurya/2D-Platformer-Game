@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dead(){
         if(this.transform.position.y < -7){
-            animator.SetBool("Dead",true);
+            animator.SetBool("Death",true);
             Application.Quit();
         }
     }
