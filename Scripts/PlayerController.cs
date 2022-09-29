@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     // public Animation anime;
     // bool keyPressed;
     public float speed;
-    public float jumpForce = 2.0f;
+    public float jumpForce;
     public bool isGrounded;
+    // public LayerMask groundLayers;
+    // public BoxCollider2D col;
+
 
     private void Awake(){
         Debug.Log("Palyer controller awake");
@@ -18,7 +21,8 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-     
+        // body = gameObject.GetComponent<Rigidbody2D>();
+        // col = GetComponent<BoxCollider2D>();
     }
 
     void OnCollisionEnter2D(){
@@ -31,43 +35,31 @@ public class PlayerController : MonoBehaviour
 
         Movecharacter(horizontal);
         PlayMovementAnimation(horizontal);
-        Crouch();
         JumpAnimation(jump);
+        Crouch();
+        Dead();
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        isGrounded = true;
     }
 
     private void JumpAnimation(float jump){
-
-        if(jump > 0){
-            animator.SetBool("Jump",true);   
+        if(jump >0 && isGrounded){
+            animator.SetTrigger("Jump");
             body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Force);
             isGrounded = false;
         }
-        else
-            animator.SetBool("Jump",false); 
-
+        else 
+            animator.SetBool("Jump", false);
     }
 
     private void Movecharacter(float horizontal){
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
-    }
-
-    private void PlayerJumpN_Crouch(float jump){
-        if(jump > 0){
-            animator.SetTrigger("Jump");
-        } 
-        else if(jump < 0){
-            animator.SetBool("Jump", false);
-        }
-        else{
-            if(Input.GetKey(KeyCode.LeftControl)){
-                animator.SetBool("Crouch", true);
-            }
-            else{
-                animator.SetBool("Crouch", false);
-            }
-        }
     }
 
     private void PlayMovementAnimation(float horizontal)
@@ -84,7 +76,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Crouch(){
-      
         if(Input.GetKey(KeyCode.LeftControl)){
             animator.SetBool("Crouch", true);
         }
@@ -92,4 +83,25 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Crouch", false);
         }
     }
+
+    private void Dead(){
+        if(this.transform.position.y < -7){
+            animator.SetBool("Dead",true);
+            Application.Quit();
+        }
+    }
 }
+
+  // private void PlayerJumpN_Crouch(){
+    //     if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
+    //         animator.SetBool("Jump", true);
+    //         isGrounded = false;
+    //     } 
+    //     else if(Input.GetKey(KeyCode.LeftControl)){
+    //         animator.SetBool("Crouch", true);
+    //     }
+    //     else {
+    //         animator.SetBool("Jump", false);
+    //         animator.SetBool("Crouch", false);
+    //     }
+    // }
