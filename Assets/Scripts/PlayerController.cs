@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
 
     private void Awake(){
-        Debug.Log("Palyer controller awake");
+        // Debug.Log("Palyer controller awake");
         body = gameObject.GetComponent<Rigidbody2D>();
     }
     void Start()
@@ -41,19 +41,24 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        isGrounded = true;
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     isGrounded = true;
+    // }
 
     private void JumpAnimation(float jump){
         if(jump >0 && isGrounded){
-            animator.SetTrigger("Jump");
-            body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Force);
+            Debug.Log("Jump"+jump);
+            // animator.SetBool("Jump", true);
+            
+            body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
             isGrounded = false;
         }
-        else 
+        else{
+            // Debug.Log("NotJump");
             animator.SetBool("Jump", false);
+        }
+            
     }
 
     private void Movecharacter(float horizontal){
@@ -85,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dead(){
-        if(this.transform.position.y < -7){
+        if(this.transform.position.y < -8){
             animator.SetBool("Death",true);
             Application.Quit();
         }
