@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     public Animator animator;
     private Rigidbody2D body;
     // public Animation anime;
@@ -13,7 +14,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     // public LayerMask groundLayers;
     // public BoxCollider2D col;
+    private bool doubleJump;
 
+    public void PickUpKey(){
+        Debug.Log("Player picked Up the key");
+        scoreController.IncreaseScore(10);
+    }
 
     private void Awake(){
         // Debug.Log("Palyer controller awake");
@@ -25,34 +31,42 @@ public class PlayerController : MonoBehaviour
         // col = GetComponent<BoxCollider2D>();
     }
 
-    void OnCollisionEnter2D(){
-        isGrounded = true;
+    void OnCollisionEnter2D(Collision2D col){
+        // if(col.collider){/
+            isGrounded = true;
+            if(isGrounded && !Input.GetButton("Jump")){
+            doubleJump = false;
+        }
+        // }
+        // else
+            // isGrounded = false;
+        
     }
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float jump = Input.GetAxisRaw("Jump");
+        // float jump = Input.GetAxisRaw("Jump");
 
         Movecharacter(horizontal);
         PlayMovementAnimation(horizontal);
-        JumpAnimation(jump);
+        JumpAnimation();
         Crouch();
         Dead();
         
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     isGrounded = true;
-    // }
+    private void JumpAnimation(){
+        if(Input.GetButton("Jump")){
 
-    private void JumpAnimation(float jump){
-        if(jump >0 && isGrounded){
-            Debug.Log("Jump"+jump);
-            animator.SetBool("Jump", true);
+            if(isGrounded || doubleJump){
+                // Debug.Log("Jump"+jump);
+                animator.SetBool("Jump", true);
             
-            body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
-            // isGrounded = false;
+                body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
+                isGrounded = false;
+                doubleJump = !doubleJump;
+            }
+            
         }
         else{
             // Debug.Log("NotJump");
@@ -110,3 +124,4 @@ public class PlayerController : MonoBehaviour
     //         animator.SetBool("Crouch", false);
     //     }
     // }
+    
