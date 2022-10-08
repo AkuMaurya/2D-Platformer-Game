@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,31 @@ public class PlayerController : MonoBehaviour
     // public BoxCollider2D col;
     private bool doubleJump;
 
+    public void KillPlayer()
+    {
+        Debug.Log("player killed by enemy");
+        //Destroy(gameObject);
+        // animator.SetBool("Death", true);
+        // if(health)
+        // ReloadLevel();
+    }
+
+    // int Health = 100; 
+    
+    // public bool isDead(){
+    //     get()
+    //     {
+    //         return Health == 0;
+    //     }
+    // }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+
     public void PickUpKey(){
         Debug.Log("Player picked Up the key");
         scoreController.IncreaseScore(10);
@@ -25,6 +51,7 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("Palyer controller awake");
         body = gameObject.GetComponent<Rigidbody2D>();
     }
+
     void Start()
     {
         // body = gameObject.GetComponent<Rigidbody2D>();
@@ -36,6 +63,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             if(isGrounded && !Input.GetButton("Jump")){
             doubleJump = false;
+            animator.SetBool("Jump", !isGrounded);
         }
         // }
         // else
@@ -49,7 +77,8 @@ public class PlayerController : MonoBehaviour
 
         Movecharacter(horizontal);
         PlayMovementAnimation(horizontal);
-        JumpAnimation();
+        // if (Input.GetButtonDown("Jump"))
+            JumpAnimation();
         Crouch();
         Dead();
         
@@ -61,18 +90,21 @@ public class PlayerController : MonoBehaviour
             if(isGrounded || doubleJump){
                 // Debug.Log("Jump"+jump);
                 animator.SetBool("Jump", true);
-            
+
                 body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
+                
                 isGrounded = false;
+                //animator.SetBool("Speed", true);
+                //animator.SetFloat("Speed", 0);
                 doubleJump = !doubleJump;
             }
             
         }
-        else{
-            // Debug.Log("NotJump");
-            animator.SetBool("Jump", false);
-        }
-            
+        // else{
+        //     // Debug.Log("NotJump");
+        //     animator.SetBool("Jump", false);
+        // }
+         animator.SetFloat("Yvelocity",body.velocity.y);   
     }
 
     private void Movecharacter(float horizontal){
@@ -103,11 +135,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Dead(){
+    public void Dead(){
         if(this.transform.position.y < -8){
-            animator.SetBool("Death",true);
+            animator.SetTrigger("Death");
             Application.Quit();
         }
+        // animator.SetTrigger("Death");
     }
 }
 
