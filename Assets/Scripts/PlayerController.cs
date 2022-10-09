@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         // animator.SetBool("Hurt",true);
         //Destroy(gameObject);
         // animator.SetBool("Death", true);
-        if(UI_Manager.health < 1)
+        if(UI_Manager.health <= 1)
             ReloadLevel();
     }
 
