@@ -8,12 +8,14 @@ public class EnemyController : MonoBehaviour
     int current;
     // public Animator animator;
     public float speed;
-
+    public Animator animator;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            animator.SetBool("Walk",true);
+            animator.SetBool("Attack",true);
             playerController.KillPlayer();
             // UI_Manager ui_manager = collision.gameObject.GetComponent<UI_Manager>();
             // ui_manager.UpdateLives();
@@ -22,7 +24,14 @@ public class EnemyController : MonoBehaviour
             if(UI_Manager.health < 1){
                 playerController.Dead();
             }
+            animator.SetBool("Walk",false);
+            animator.SetBool("Attack",false);
         }
+        // else{
+        //     animator.SetBool("Walk",false);
+        //     animator.SetBool("Attack",false);
+        // }
+            
     }
 
     void Update(){
@@ -30,8 +39,6 @@ public class EnemyController : MonoBehaviour
         {
             
             transform.position = Vector3.MoveTowards(transform.position, points[current].position,speed*Time.deltaTime);
-            // animator.SetBool( false);
-            
         }
         else {
             Vector3 scale = this.transform.localScale;

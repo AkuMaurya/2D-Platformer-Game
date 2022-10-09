@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e3c54db6d8a88d14e80b30406b8aa79e
+guid: 02f80636ce2267044a032e115011993d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -715,7 +715,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GameOverEllen_23: 21300046
+      GameOverEllen_3: 21300006
       GameOverEllen_19: 21300038
       GameOverEllen_17: 21300034
       GameOverEllen_6: 21300012
@@ -736,9 +736,9 @@ TextureImporter:
       GameOverEllen_20: 21300040
       GameOverEllen_14: 21300028
       GameOverEllen_0: 21300000
-      GameOverEllen_2: 21300004
       GameOverEllen_15: 21300030
-      GameOverEllen_3: 21300006
+      GameOverEllen_2: 21300004
+      GameOverEllen_23: 21300046
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

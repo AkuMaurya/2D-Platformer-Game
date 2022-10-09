@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e43932fcf79bb44881725c7dba2dfde
+guid: 6007385960c8f2644abe0969350b8bc5
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -1112,8 +1112,8 @@ TextureImporter:
       AlienFlora_10: 21300018
       AlienFlora_11: 21300020
       AlienFlora_38: 21300064
-      AlienFlora_12: 21300022
       AlienFlora_36: 21300062
+      AlienFlora_12: 21300022
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

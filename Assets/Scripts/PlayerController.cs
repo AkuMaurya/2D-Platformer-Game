@@ -15,15 +15,16 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     // public LayerMask groundLayers;
     // public BoxCollider2D col;
-    private bool doubleJump;
+    private bool doubleJump = true;
 
     public void KillPlayer()
     {
         Debug.Log("player killed by enemy");
+        // animator.SetBool("Hurt",true);
         //Destroy(gameObject);
         // animator.SetBool("Death", true);
-        // if(health)
-        // ReloadLevel();
+        if(UI_Manager.health < 1)
+            ReloadLevel();
     }
 
     // int Health = 100; 
@@ -64,6 +65,9 @@ public class PlayerController : MonoBehaviour
             if(isGrounded && !Input.GetButton("Jump")){
             doubleJump = false;
             animator.SetBool("Jump", !isGrounded);
+            // if(col.gameObject.GetComponent<EnemyController>() != null){
+            //     animator.SetBool("Hurt", true);
+            // }
         }
         // }
         // else
@@ -81,7 +85,7 @@ public class PlayerController : MonoBehaviour
             JumpAnimation();
         Crouch();
         Dead();
-        
+        // animator.SetBool("Hurt",false);
     }
 
     private void JumpAnimation(){
