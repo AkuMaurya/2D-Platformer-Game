@@ -25,9 +25,11 @@ public class PlayerController : MonoBehaviour
         // animator.SetBool("Hurt",true);
         //Destroy(gameObject);
         // animator.SetBool("Death", true);
-        if(UI_Manager.health <= 1)
+        if(UI_Manager.health <= 1){
             gameOverController.PalyerDied();
-        this.enabled = false;
+            this.enabled = false;
+        }
+            
     }
     
 
@@ -82,24 +84,16 @@ public class PlayerController : MonoBehaviour
             if(isGrounded || doubleJump){
                 // Debug.Log("Jump"+jump);
                 animator.SetBool("Jump", true);
-
                 body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
-                
                 isGrounded = false;
-                //animator.SetBool("Speed", true);
-                //animator.SetFloat("Speed", 0);
                 doubleJump = !doubleJump;
             }
-            
         }
-        // else{
-        //     // Debug.Log("NotJump");
-        //     animator.SetBool("Jump", false);
-        // }
          animator.SetFloat("Yvelocity",body.velocity.y);   
     }
 
     private void Movecharacter(float horizontal){
+        
         Vector3 position = transform.position;
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
@@ -107,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayMovementAnimation(float horizontal)
     {
+        
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         Vector3 scale = transform.localScale;
         if(horizontal < 0){

@@ -17,20 +17,15 @@ public class EnemyController : MonoBehaviour
             // animator.SetBool("Walk",true);
             animator.SetBool("Attack",true);
             playerController.KillPlayer();
-            // UI_Manager ui_manager = collision.gameObject.GetComponent<UI_Manager>();
-            // ui_manager.UpdateLives();
+            
             UI_Manager.health -= 1;
             
             if(UI_Manager.health < 1){
                 playerController.Dead();
             }
-            animator.SetBool("Walk",false);
-            // animator.SetBool("Attack",false);
+            // animator.SetBool("Walk",false);
+            animator.SetBool("Attack",false);
         }
-        // else{
-        //     animator.SetBool("Walk",false);
-        //     animator.SetBool("Attack",false);
-        // }
             
     }
 
