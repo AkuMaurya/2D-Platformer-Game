@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            animator.SetBool("Walk",true);
+            // animator.SetBool("Walk",true);
             animator.SetBool("Attack",true);
             playerController.KillPlayer();
             // UI_Manager ui_manager = collision.gameObject.GetComponent<UI_Manager>();
@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
                 playerController.Dead();
             }
             animator.SetBool("Walk",false);
-            animator.SetBool("Attack",false);
+            // animator.SetBool("Attack",false);
         }
         // else{
         //     animator.SetBool("Walk",false);

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
+
+    public GameOver gameOverController;
     public Animator animator;
     private Rigidbody2D body;
     // public Animation anime;
@@ -24,22 +26,10 @@ public class PlayerController : MonoBehaviour
         //Destroy(gameObject);
         // animator.SetBool("Death", true);
         if(UI_Manager.health <= 1)
-            ReloadLevel();
+            gameOverController.PalyerDied();
+        this.enabled = false;
     }
-
-    // int Health = 100; 
     
-    // public bool isDead(){
-    //     get()
-    //     {
-    //         return Health == 0;
-    //     }
-    // }
-
-    public void ReloadLevel()
-    {
-        SceneManager.LoadScene(0);
-    }
 
 
 
@@ -65,9 +55,7 @@ public class PlayerController : MonoBehaviour
             if(isGrounded && !Input.GetButton("Jump")){
             doubleJump = false;
             animator.SetBool("Jump", !isGrounded);
-            // if(col.gameObject.GetComponent<EnemyController>() != null){
-            //     animator.SetBool("Hurt", true);
-            // }
+          
         }
         // }
         // else
@@ -82,7 +70,7 @@ public class PlayerController : MonoBehaviour
         Movecharacter(horizontal);
         PlayMovementAnimation(horizontal);
         // if (Input.GetButtonDown("Jump"))
-            JumpAnimation();
+        JumpAnimation();
         Crouch();
         Dead();
         // animator.SetBool("Hurt",false);
