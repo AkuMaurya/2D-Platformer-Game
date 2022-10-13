@@ -16,10 +16,10 @@ public class EnemyController : MonoBehaviour
         {
             // animator.SetBool("Walk",true);
             animator.SetBool("Attack",true);
+            UI_Manager.health -= 1;
             playerController.KillPlayer();
             
-            UI_Manager.health -= 1;
-            
+            Debug.Log(UI_Manager.health);
             if(UI_Manager.health < 1){
                 playerController.Dead();
             }

@@ -9,15 +9,20 @@ public class GameOver : MonoBehaviour
     public Button buttonRestart;
 
     private void Awake(){
+        // gameObject.SetActive(false);
         buttonRestart.onClick.AddListener(ReloadLevel);
+
     }
 
     public void PalyerDied(){
+        Debug.Log("Sajan");
         gameObject.SetActive(true);
     }
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(1);
+        Debug.Log("Reloading scene...");
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
     }
 }

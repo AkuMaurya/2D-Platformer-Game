@@ -25,15 +25,13 @@ public class PlayerController : MonoBehaviour
         // animator.SetBool("Hurt",true);
         //Destroy(gameObject);
         // animator.SetBool("Death", true);
-        if(UI_Manager.health <= 1){
+        if(UI_Manager.health < 1){
+            Debug.Log("player killed by");
             gameOverController.PalyerDied();
+            Debug.Log("player by enemy");
             this.enabled = false;
         }
-            
     }
-    
-
-
 
     public void PickUpKey(){
         Debug.Log("Player picked Up the key");
@@ -125,7 +123,7 @@ public class PlayerController : MonoBehaviour
     public void Dead(){
         if(this.transform.position.y < -8){
             animator.SetTrigger("Death");
-            Application.Quit();
+        
         }
         // animator.SetTrigger("Death");
     }

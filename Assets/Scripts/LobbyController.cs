@@ -7,14 +7,19 @@ using UnityEngine.UI;
 public class LobbyController : MonoBehaviour
 {
     public Button buttonPlay;
+    public GameObject LevelSelection;
+    // GameOver _over;
 
     private void Awake()
     {
+        // _over = gameObject.GetComponent<GameOver>();
+        // _over.gameObject.SetActive(false);
         buttonPlay.onClick.AddListener(PlayGame);
     }
 
     private void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        LevelSelection.SetActive(true);
     }
 }

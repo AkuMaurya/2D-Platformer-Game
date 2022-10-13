@@ -149,3 +149,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speed: 2.5
+  animator: {fileID: 1570991080714541710}

@@ -14,7 +14,7 @@ public class UI_Manager : MonoBehaviour
     //     livesImageDisplay.sprite = lives[currentLives]; 
     // }
 
-    public GameObject heart1, heart2, heart3, GameOver;
+    public GameObject heart1, heart2, heart3;
     public static int health;
 
     void Start()
@@ -23,7 +23,6 @@ public class UI_Manager : MonoBehaviour
         heart1.gameObject.SetActive(true);
         heart2.gameObject.SetActive(true);
         heart3.gameObject.SetActive(true);
-        GameOver.gameObject.SetActive(false);
     }
 
     public void Update(){
@@ -40,21 +39,20 @@ public class UI_Manager : MonoBehaviour
         //     heart3.gameObject.SetActive(true);    
         // break;  
         case 2:    
-            heart1.gameObject.SetActive(true);
-            heart2.gameObject.SetActive(true);
+            // heart1.gameObject.SetActive(true);
+            // heart2.gameObject.SetActive(true);
             heart3.gameObject.SetActive(false);
         break;
         case 1:    
-            heart1.gameObject.SetActive(true);
+            // heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(false);
-            heart3.gameObject.SetActive(false);
+            // heart3.gameObject.SetActive(false);
         break;
-        case 0:    
+        }
+        if(health <= 0){
             heart1.gameObject.SetActive(false);
-            heart2.gameObject.SetActive(false);
-            heart3.gameObject.SetActive(false);
-            GameOver.gameObject.SetActive(true);
-        break;   
-            }
+            // heart2.gameObject.SetActive(false);
+            // heart3.gameObject.SetActive(false);
+        }       
     }
 }
