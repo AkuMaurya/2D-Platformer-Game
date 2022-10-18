@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour
     }
 
     public void PalyerDied(){
-        Debug.Log("Sajan");
+        // Debug.Log("Sajan");
         gameObject.SetActive(true);
     }
 

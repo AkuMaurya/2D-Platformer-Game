@@ -10,25 +10,16 @@ public class PlayerController : MonoBehaviour
     public GameOver gameOverController;
     public Animator animator;
     private Rigidbody2D body;
-    // public Animation anime;
-    // bool keyPressed;
     public float speed;
     public float jumpForce;
     public bool isGrounded;
-    // public LayerMask groundLayers;
-    // public BoxCollider2D col;
     private bool doubleJump = true;
 
     public void KillPlayer()
     {
         Debug.Log("player killed by enemy");
-        // animator.SetBool("Hurt",true);
-        //Destroy(gameObject);
-        // animator.SetBool("Death", true);
         if(UI_Manager.health < 1){
-            Debug.Log("player killed by");
             gameOverController.PalyerDied();
-            Debug.Log("player by enemy");
             this.enabled = false;
         }
     }
@@ -43,44 +34,28 @@ public class PlayerController : MonoBehaviour
         body = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        // body = gameObject.GetComponent<Rigidbody2D>();
-        // col = GetComponent<BoxCollider2D>();
-    }
-
     void OnCollisionEnter2D(Collision2D col){
-        // if(col.collider){/
             isGrounded = true;
             if(isGrounded && !Input.GetButton("Jump")){
             doubleJump = false;
             animator.SetBool("Jump", !isGrounded);
           
         }
-        // }
-        // else
-            // isGrounded = false;
-        
     }
     private void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        // float jump = Input.GetAxisRaw("Jump");
-
         Movecharacter(horizontal);
         PlayMovementAnimation(horizontal);
-        // if (Input.GetButtonDown("Jump"))
         JumpAnimation();
         Crouch();
         Dead();
-        // animator.SetBool("Hurt",false);
     }
 
     private void JumpAnimation(){
         if(Input.GetButton("Jump")){
 
             if(isGrounded || doubleJump){
-                // Debug.Log("Jump"+jump);
                 animator.SetBool("Jump", true);
                 body.AddForce(new Vector2(0f, jumpForce),ForceMode2D.Impulse);
                 isGrounded = false;
@@ -125,21 +100,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Death");
         
         }
-        // animator.SetTrigger("Death");
     }
 }
 
-  // private void PlayerJumpN_Crouch(){
-    //     if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
-    //         animator.SetBool("Jump", true);
-    //         isGrounded = false;
-    //     } 
-    //     else if(Input.GetKey(KeyCode.LeftControl)){
-    //         animator.SetBool("Crouch", true);
-    //     }
-    //     else {
-    //         animator.SetBool("Jump", false);
-    //         animator.SetBool("Crouch", false);
-    //     }
-    // }
     
