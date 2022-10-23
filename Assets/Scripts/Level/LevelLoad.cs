@@ -15,6 +15,7 @@ public class LevelLoad : MonoBehaviour
 
     private void OnClick(){
         LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(LevelName);
+        Debug.Log("LvlLod" + levelStatus);
         switch(levelStatus)
         {
             case LevelStatus.Locked:
@@ -22,14 +23,14 @@ public class LevelLoad : MonoBehaviour
                 break;
 
             case LevelStatus.Unlocked:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
 
             case LevelStatus.Completed:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
-
-
         }
         // SceneManager.LoadScene(LevelName);
     }

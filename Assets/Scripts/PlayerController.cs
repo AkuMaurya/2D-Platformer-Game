@@ -83,7 +83,8 @@ public class PlayerController : MonoBehaviour
         else if(horizontal>0){
             scale.x=Mathf.Abs(scale.x);
         }
-        transform.localScale = scale;        
+        transform.localScale = scale;   
+        SoundManager.Instance.Play(Sounds.PlayerMove);     
     }
 
     private void Crouch(){

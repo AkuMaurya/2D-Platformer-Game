@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour
     }
 
     public void PalyerDied(){
-        // Debug.Log("Sajan");
+        SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
         gameObject.SetActive(true);
     }
 

@@ -12,15 +12,15 @@ public class LobbyController : MonoBehaviour
 
     private void Awake()
     {
-        // _over = gameObject.GetComponent<GameOver>();
-        // _over.gameObject.SetActive(false);
         buttonPlay.onClick.AddListener(PlayGame);
     }
 
     public void PlayGame()
     {
+        SoundManager.Instance.Play(Sounds.ButtonClick);
         // SceneManager.LoadScene(1);
         LevelSelection.SetActive(true);
     }
+    
 }
 

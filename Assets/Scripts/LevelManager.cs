@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
     public static LevelManager Instance { get{ return instance; }}
-    public GameObject LevelSelection;
+    // public GameObject LevelSelection;
     // public string Level1;
     public  string[] Levels;
 
@@ -21,10 +21,15 @@ public class LevelManager : MonoBehaviour
     }
 
     public void Start(){
-        if(GetLevelStatus(Levels[0]) == LevelStatus.Locked)
-        {
-            SetLevelStatus(Levels[0], LevelStatus.Unlocked);
-        }
+        Debug.Log(Levels[0]);
+        // if(GetLevelStatus(Levels[0]) == LevelStatus.Locked)
+        // {
+            // SetLevelStatus(Levels[0], LevelStatus.Unlocked);
+    //         Debug.Log("0" + Levels[0]);
+    //         Debug.Log("1" + LevelStatus.Completed);
+    //         Debug.Log("2" + LevelStatus.Locked);
+    //         Debug.Log("3" + LevelStatus.Unlocked);
+    //     }
     }
 
     public void MarkCurrentLevelComplete(){
@@ -42,11 +47,12 @@ public class LevelManager : MonoBehaviour
         if(nextSceneIndex < Levels.Length){
             SetLevelStatus(Levels[nextSceneIndex],LevelStatus.Unlocked);
         }
-        LevelSelection.SetActive(true);
+        // LevelSelection.SetActive(true);
     }
 
     public LevelStatus GetLevelStatus(string level){
         LevelStatus levelStatus =  (LevelStatus) PlayerPrefs.GetInt(level, 0);
+        Debug.Log("LvlMngr" + levelStatus);
         return levelStatus;
     }
 
