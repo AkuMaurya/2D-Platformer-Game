@@ -74,17 +74,20 @@ public class PlayerController : MonoBehaviour
 
     private void PlayMovementAnimation(float horizontal)
     {
-        
+          
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         Vector3 scale = transform.localScale;
         if(horizontal < 0){
             scale.x = -1f * Mathf.Abs(scale.x);
+            SoundManager.Instance.Play(Sounds.PlayerMove);
         }
         else if(horizontal>0){
             scale.x=Mathf.Abs(scale.x);
+            SoundManager.Instance.Play(Sounds.PlayerMove);
         }
+        
         transform.localScale = scale;   
-        SoundManager.Instance.Play(Sounds.PlayerMove);     
+           
     }
 
     private void Crouch(){

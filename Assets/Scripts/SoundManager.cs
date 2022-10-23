@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
     }
 
     private void Start(){
-        SetVolume(0.05f);
+        SetVolume(0.1f);
         PlayMusic(global::Sounds.Music);
     }
 
@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
             soundMusic.Play();
         }
         else{
-            Debug.LogError("Clip not found for syatem type" + sound);
+            Debug.LogError("Clip not found for system type" + sound);
         }
     }
 
@@ -60,7 +60,7 @@ public class SoundManager : MonoBehaviour
             soundEffect.PlayOneShot(clip);
         }
         else{
-            Debug.LogError("Clip not found for syatem type" + sound);
+            Debug.LogError("Clip not found for system type" + sound);
         }
     }
 
@@ -85,5 +85,6 @@ public enum Sounds
     Music,
     PlayerMove,
     PlayerDeath,
-    Enemydeath
+    Enemydeath,
+    BombBlast
 }

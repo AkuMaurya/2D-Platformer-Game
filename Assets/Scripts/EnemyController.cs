@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public ParticleSystem bombBlast;
     public Transform[] points;
     int current;
     // public Animator animator;
@@ -11,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
@@ -18,6 +20,8 @@ public class EnemyController : MonoBehaviour
             animator.SetBool("Attack",true);
             UI_Manager.health -= 1;
             playerController.KillPlayer();
+            SoundManager.Instance.Play(Sounds.BombBlast);
+            bombBlast.Play();
             
             Debug.Log(UI_Manager.health);
             if(UI_Manager.health < 1){
