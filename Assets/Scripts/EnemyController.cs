@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public ParticleSystem bombBlast;
+    public Particlecontroller bombBlast;
     public Transform[] points;
     int current;
     // public Animator animator;
@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
             UI_Manager.health -= 1;
             playerController.KillPlayer();
             SoundManager.Instance.Play(Sounds.BombBlast);
-            bombBlast.Play();
+            bombBlast.PlayEffect();
             
             Debug.Log(UI_Manager.health);
             if(UI_Manager.health < 1){
