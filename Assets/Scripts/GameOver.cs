@@ -15,8 +15,10 @@ public class GameOver : MonoBehaviour
     }
 
     public void PalyerDied(){
-        SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
-        gameObject.SetActive(true);
+        Debug.Log("Didnt reached");
+        // SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
+        this.gameObject.SetActive(true);
+        Debug.Log("Didnt __reached");
     }
 
     public void ReloadLevel()

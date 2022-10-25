@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a036b9f51f7e9244a2eb9d16033abff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombBlast: {fileID: 0}
   points:
   - {fileID: 0}
   - {fileID: 0}

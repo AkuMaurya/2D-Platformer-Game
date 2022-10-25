@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
-
     public GameOver gameOverController;
     public Animator animator;
     private Rigidbody2D body;
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("player killed by enemy");
         if(UI_Manager.health < 1){
+            Debug.Log("code reached here");
             gameOverController.PalyerDied();
             this.enabled = false;
         }
@@ -50,6 +50,21 @@ public class PlayerController : MonoBehaviour
         JumpAnimation();
         Crouch();
         Dead();
+        AttackEnemy();
+    }
+    
+    private void OnTrigger(Collider2D collision){
+        if(collision.tag == "Enemy"){
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void AttackEnemy(){
+        if(Input.GetKeyDown(KeyCode.F)){
+            animator.SetBool("Attack", true);
+        }
+        else
+            animator.SetBool("Attack", false);
     }
 
     private void JumpAnimation(){
@@ -79,11 +94,11 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         if(horizontal < 0){
             scale.x = -1f * Mathf.Abs(scale.x);
-            SoundManager.Instance.Play(Sounds.PlayerMove);
+            // SoundManager.Instance.Play(Sounds.PlayerMove);
         }
         else if(horizontal>0){
             scale.x=Mathf.Abs(scale.x);
-            SoundManager.Instance.Play(Sounds.PlayerMove);
+            // SoundManager.Instance.Play(Sounds.PlayerMove);
         }
         
         transform.localScale = scale;   
