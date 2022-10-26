@@ -11,7 +11,6 @@ public class GameOver : MonoBehaviour
     private void Awake(){
         // gameObject.SetActive(false);
         buttonRestart.onClick.AddListener(ReloadLevel);
-
     }
 
     public void PalyerDied(){

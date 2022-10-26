@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     private bool doubleJump = true;
 
+    public Transform bulletSpawnPoint;
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 10;
+
     public void KillPlayer()
     {
         Debug.Log("player killed by enemy");
@@ -53,15 +57,17 @@ public class PlayerController : MonoBehaviour
         AttackEnemy();
     }
     
-    private void OnTrigger(Collider2D collision){
-        if(collision.tag == "Enemy"){
-            Destroy(collision.gameObject);
-        }
-    }
+    // private void OnTrigger(Collider2D collision){
+    //     if(collision.tag == "Enemy"){
+    //         Destroy(collision.gameObject);
+    //     }
+    // }
 
     private void AttackEnemy(){
         if(Input.GetKeyDown(KeyCode.F)){
             animator.SetBool("Attack", true);
+            var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward*bulletSpeed;
         }
         else
             animator.SetBool("Attack", false);
