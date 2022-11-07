@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
 
     private void Awake(){
         // gameObject.SetActive(false);
+        Debug.Log("Restarted");
         buttonRestart.onClick.AddListener(ReloadLevel);
     }
 
@@ -17,7 +18,6 @@ public class GameOver : MonoBehaviour
         Debug.Log("Didnt reached");
         // SoundManager.Instance.PlayMusic(Sounds.PlayerDeath);
         this.gameObject.SetActive(true);
-        Debug.Log("Didnt __reached");
     }
 
     public void ReloadLevel()

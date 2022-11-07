@@ -19,7 +19,7 @@ public class LevelLoad : MonoBehaviour
         switch(levelStatus)
         {
             case LevelStatus.Locked:
-                Debug.Log("Can't playthis level till U unlock it");
+                Debug.Log("Can't play this level till U unlock it");
                 break;
 
             case LevelStatus.Unlocked:
@@ -32,6 +32,5 @@ public class LevelLoad : MonoBehaviour
                 SceneManager.LoadScene(LevelName);
                 break;
         }
-        // SceneManager.LoadScene(LevelName);
     }
 }

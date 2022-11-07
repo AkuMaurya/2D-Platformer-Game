@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool doubleJump = true;
 
     public Transform bulletSpawnPoint;
-    public GameObject bulletPrefab;
+    public Rigidbody2D bulletPrefab;
     public float bulletSpeed = 10;
 
     public void KillPlayer()
@@ -54,23 +54,12 @@ public class PlayerController : MonoBehaviour
         JumpAnimation();
         Crouch();
         Dead();
-        AttackEnemy();
     }
     
-    // private void OnTrigger(Collider2D collision){
-    //     if(collision.tag == "Enemy"){
-    //         Destroy(collision.gameObject);
-    //     }
-    // }
-
-    private void AttackEnemy(){
-        if(Input.GetKeyDown(KeyCode.F)){
+    private void AttackEnemy(float value){
             animator.SetBool("Attack", true);
             var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward*bulletSpeed;
-        }
-        else
-            animator.SetBool("Attack", false);
+            bullet.AddForce(value * bulletSpawnPoint.right* bulletSpeed);
     }
 
     private void JumpAnimation(){
@@ -106,7 +95,11 @@ public class PlayerController : MonoBehaviour
             scale.x=Mathf.Abs(scale.x);
             // SoundManager.Instance.Play(Sounds.PlayerMove);
         }
-        
+        if(Input.GetKeyDown(KeyCode.F)){
+                AttackEnemy(scale.x);
+            }
+            else
+            animator.SetBool("Attack", false);
         transform.localScale = scale;   
            
     }
@@ -123,7 +116,10 @@ public class PlayerController : MonoBehaviour
     public void Dead(){
         if(this.transform.position.y < -8){
             animator.SetTrigger("Death");
-        
+        }
+        if(this.transform.position.y < -16){
+            gameOverController.PalyerDied();
+            this.enabled = false;
         }
     }
 }

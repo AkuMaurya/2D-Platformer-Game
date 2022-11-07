@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     public void MarkCurrentLevelComplete(){
         Scene currentScene = SceneManager.GetActiveScene();
         SetLevelStatus(currentScene.name,  LevelStatus.Completed);
+       
     //     int nextSceneIndex = currentScene.buildIndex + 1;
     //     Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);
     //     Debug.Log("next scene is valid:      " + nextScene.IsValid());
@@ -42,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
         int currentSceneIndex = Array.FindIndex(Levels, level => level == currentScene.name);
         int nextSceneIndex = currentSceneIndex + 1;
-        Debug.Log(currentScene.name);
+        Debug.Log("Current Scene Name: "+currentScene.name);
 
         if(nextSceneIndex < Levels.Length){
             SetLevelStatus(Levels[nextSceneIndex],LevelStatus.Unlocked);
@@ -51,7 +52,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public LevelStatus GetLevelStatus(string level){
-        LevelStatus levelStatus =  (LevelStatus) PlayerPrefs.GetInt(level, 0);
+        LevelStatus levelStatus =  (LevelStatus) PlayerPrefs.GetInt(level, 1);
         Debug.Log("LvlMngr" + levelStatus);
         return levelStatus;
     }
