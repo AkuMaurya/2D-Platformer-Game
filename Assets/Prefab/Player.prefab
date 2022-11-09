@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936038273689345095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: 1.32, z: 0}
+  m_LocalPosition: {x: 1.97, y: 0.68, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,8 +260,8 @@ MonoBehaviour:
   jumpForce: 350
   isGrounded: 0
   bulletSpawnPoint: {fileID: 8126947261518124409}
-  bulletPrefab: {fileID: 6746834890396051014, guid: c4e9c3bb7483b684aa4046610b077b7d, type: 3}
-  bulletSpeed: 10
+  bulletPrefab: {fileID: -1505497416482397523, guid: c4e9c3bb7483b684aa4046610b077b7d, type: 3}
+  bulletSpeed: 100
 --- !u!1 &8655744324341885177
 GameObject:
   m_ObjectHideFlags: 0

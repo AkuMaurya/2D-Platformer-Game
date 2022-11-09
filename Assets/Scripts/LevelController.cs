@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-     public GameObject levelController;
+    //  public LobbyController levelController;
+     public GameObject LevelSelection;
     // LobbyController LB;
     // LB.GetComponent<PlayerController>;
     
@@ -16,7 +17,8 @@ public class LevelController : MonoBehaviour
             LevelManager.Instance.MarkCurrentLevelComplete();
             Debug.Log("Level Finished By player");
            
-            levelController.SetActive(true);
+            // levelController.PlayGame();
+            LevelSelection.SetActive(true);
             // LB.Play
             // LobbyController.PlayGame();
             

@@ -16,6 +16,7 @@ public class UI_Manager : MonoBehaviour
 
     public GameObject heart1, heart2, heart3;
     public static int health;
+    public Animator animator;
 
     void Start()
     {
@@ -24,14 +25,8 @@ public class UI_Manager : MonoBehaviour
         heart2.gameObject.SetActive(true);
         heart3.gameObject.SetActive(true);
     }
-
+int i = 4;
     public void Update(){
-
-        // if(health>3){
-        //     health = 3;
-        // }
-        // health -= 1;
-
         switch(health){    
         // case 3:   
         //     heart1.gameObject.SetActive(true);
@@ -42,15 +37,28 @@ public class UI_Manager : MonoBehaviour
             // heart1.gameObject.SetActive(true);
             // heart2.gameObject.SetActive(true);
             heart3.gameObject.SetActive(false);
+            if(i==4){
+                animator.SetTrigger("Hurt");
+            }
+            i=3;
+            
         break;
         case 1:    
             // heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(false);
+            if(i==3){
+                animator.SetTrigger("Hurt");
+            }
+            i=2;
             // heart3.gameObject.SetActive(false);
         break;
         }
         if(health <= 0){
             heart1.gameObject.SetActive(false);
+            if(i==2){
+                animator.SetTrigger("Hurt");
+            }
+            
             // heart2.gameObject.SetActive(false);
             // heart3.gameObject.SetActive(false);
         }       
